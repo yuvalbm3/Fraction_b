@@ -9,6 +9,7 @@ namespace ariel{
         private:
         int _num, _den; //numerator, denominator
         public:
+        //constuctors
         Fraction(const int& num,const int& den);
         Fraction(double);
         Fraction():_num(0), _den(1){};
@@ -30,15 +31,10 @@ namespace ariel{
         }
         Fraction reduceFrac();
         Fraction float2fract(float&);
-        float fract2float(Fraction&);
         Fraction& operator++();
         Fraction operator++(int);
         Fraction& operator--();
         Fraction operator--(int);
-        // int getNum();
-        // void setDen(int);
-        // int getDen();
-        //constuctor
     };
     Fraction operator+(const Fraction&, float);
     Fraction operator+(float, const Fraction&);
