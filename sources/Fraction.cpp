@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <cmath>
+#include <numeric>
 #include <limits>
 #include <stdexcept>
 #include "Fraction.hpp"
@@ -40,7 +41,16 @@ namespace ariel{
     void Fraction::setDen(int den) {
         _den = den;
     }
-    
+  
+    int Fraction::gcd(int a, int b) {
+        while (b != 0) {
+            int r = a % b;
+            a = b;
+            b = r;
+        }
+        return a;
+    }
+
     Fraction Fraction::reduceFrac(){
         bool neg = false;
         int t_den = this->den();
@@ -58,14 +68,9 @@ namespace ariel{
             neg = true;
             t_num = -1 * t_num;
         }
-        int minFrac = min(t_den, t_num);
-        for (int i = minFrac; i > 0; i--)
-        {
-            if(t_den % i == 0 && t_num % i == 0){
-                t_den = t_den / i;
-                t_num = t_num / i;
-            }
-        }
+        int gcd_ans = gcd(t_num, t_den); //the greater common divider.
+        t_num = (t_num / gcd_ans);
+        t_den = (t_den / gcd_ans);
         // if num is negative add the minus
         if(neg){
             t_num = -1 * t_num;
@@ -73,7 +78,6 @@ namespace ariel{
         Fraction frac1(t_num, t_den);
         return frac1;
     }
-
 
     Fraction Fraction::float2fract(float& num){
         int n_den = 1000;

@@ -30,6 +30,7 @@ namespace ariel{
             return _num;
         }
         Fraction reduceFrac();
+        int gcd(int, int);
         Fraction float2fract(float&);
         Fraction& operator++();
         Fraction operator++(int);
